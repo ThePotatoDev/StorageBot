@@ -2,9 +2,9 @@ package gg.tater.uncbot;
 
 import gg.tater.uncbot.model.DiscordBotModule;
 import gg.tater.uncbot.module.clip.VideoClipModule;
-import gg.tater.uncbot.module.jda.JdaBotModule;
-import gg.tater.uncbot.module.dropbox.DropboxService;
 import gg.tater.uncbot.module.dropbox.DropboxModule;
+import gg.tater.uncbot.module.dropbox.DropboxService;
+import gg.tater.uncbot.module.jda.JdaBotModule;
 import lombok.SneakyThrows;
 
 import java.util.HashSet;
@@ -24,7 +24,7 @@ public final class UncBotApplication {
     public static void main(String[] args) {
         DropboxService service = registerModule(new DropboxModule());
         registerModule(new JdaBotModule(service));
-//        registerModule(new VideoClipModule(service));
+        registerModule(new VideoClipModule(service));
         Runtime.getRuntime().addShutdownHook(new Thread(() -> DISCORD_BOT_MODULES.forEach(UncBotApplication::unregisterModule)));
     }
 
